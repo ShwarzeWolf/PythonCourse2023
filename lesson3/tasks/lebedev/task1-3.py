@@ -1,18 +1,23 @@
 from abc import abstractmethod
 import math
+from typing import Union
 
 
 class AbstractShape:
+    '''Class representing any shape'''
     def calculate_area(self):
+        '''Inputs values and returns the area of the shape'''
         self.get_values(self)
         return self.area_formula(self)
 
     @abstractmethod
     def get_values(self):
+        '''Method to input values'''
         pass
 
     @abstractmethod
     def area_formula(self) -> float:
+        '''Method to calculate area from values in the class'''
         pass
 
 
@@ -42,7 +47,12 @@ class RectangleShape(AbstractShape):
         return self.width * self.height
 
 
-def determine_shape(shape_name):
+def determine_shape(shape_name: str) -> Union[AbstractShape, None]:
+    '''
+    Returns a shape class by its type name
+    :param shape_name: name of the shape ("square", "circle", "rectangle")
+    :returns: shape class or None if shape is not found
+    '''
     shape_name = shape_name.lower()
     if shape_name == "square":
         return SquareShape
