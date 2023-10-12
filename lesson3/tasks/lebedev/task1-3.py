@@ -3,16 +3,16 @@ import math
 
 
 class AbstractShape:
-    def count_square(self):
+    def calculate_area(self):
         self.get_values(self)
-        return self.square_formula(self)
+        return self.area_formula(self)
 
     @abstractmethod
     def get_values(self):
         pass
 
     @abstractmethod
-    def square_formula(self) -> float:
+    def area_formula(self) -> float:
         pass
 
 
@@ -20,7 +20,7 @@ class SquareShape(AbstractShape):
     def get_values(self):
         self.length = float(input("Введите длину стороны квадрата: "))
     
-    def square_formula(self):
+    def area_formula(self):
         return self.length ** 2
 
 
@@ -28,7 +28,7 @@ class CircleShape(AbstractShape):
     def get_values(self):
         self.radius = float(input("Введите радиус круга: "))
     
-    def square_formula(self):
+    def area_formula(self):
         square = math.pi * (self.radius ** 2)
         return round(square, 2)
     
@@ -38,7 +38,7 @@ class RectangleShape(AbstractShape):
         self.width = float(input("Введите 1-ю сторону прямоугольника: "))
         self.height = float(input("Введите 2-ю сторону прямоугольника: "))
     
-    def square_formula(self):
+    def area_formula(self):
         return self.width * self.height
 
 
@@ -69,7 +69,7 @@ for i in range(shapes_count):
     if shape == None:
         continue
 
-    square = shape.count_square(shape)
+    square = shape.calculate_area(shape)
     print(f"Площадь фигуры равна {square}")
 
     total_square += square
