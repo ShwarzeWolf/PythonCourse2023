@@ -7,8 +7,8 @@ class AbstractShape:
     '''Class representing any shape'''
     def calculate_area(self):
         '''Inputs values and returns the area of the shape'''
-        self.get_values(self)
-        return self.area_formula(self)
+        self.get_values()
+        return self.area_formula()
 
     @abstractmethod
     def get_values(self):
@@ -55,11 +55,11 @@ def determine_shape(shape_name: str) -> Union[AbstractShape, None]:
     '''
     shape_name = shape_name.lower()
     if shape_name == "square":
-        return SquareShape
+        return SquareShape()
     elif shape_name == "circle":
-        return CircleShape
+        return CircleShape()
     elif shape_name == "rectangle":
-        return RectangleShape
+        return RectangleShape()
     else:
         print("Unknown shape")
         return None
@@ -79,7 +79,7 @@ for i in range(shapes_count):
     if shape == None:
         continue
 
-    square = shape.calculate_area(shape)
+    square = shape.calculate_area()
     print(f"Площадь фигуры равна {square}")
 
     total_square += square
