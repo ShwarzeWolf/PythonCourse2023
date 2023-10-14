@@ -49,9 +49,9 @@ class RectangleShape(AbstractShape):
 
 def determine_shape(shape_name: str) -> Union[AbstractShape, None]:
     '''
-    Returns a shape class by its type name
+    Returns a shape object by its type name
     :param shape_name: name of the shape ("square", "circle", "rectangle")
-    :returns: shape class or None if shape is not found
+    :returns: shape object or None if shape is not found
     '''
     shape_name = shape_name.lower()
     if shape_name == "square":
