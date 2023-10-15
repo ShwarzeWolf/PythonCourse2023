@@ -37,6 +37,7 @@ elif task == '2':
     word = input('Enter word: ')
     w1 = word.lower()
     w2 = word.lower()[::-1]
+
     for i in range(len(w1) // 2):
         if w1[i] != w2[i]:
             print('NO')
