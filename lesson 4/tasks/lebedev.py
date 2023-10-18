@@ -1,6 +1,5 @@
 import random
 import turtle
-from typing import Any
 
 # TASK 1
 # Создайте список из 100 рандомных чисел. Посчитайте сумму этих чисел
