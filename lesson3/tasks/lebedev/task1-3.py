@@ -1,23 +1,23 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 import math
-from typing import Union
+from typing import Optional
 
 
-class AbstractShape:
-    '''Class representing any shape'''
+class AbstractShape(ABC):
+    ''' Class representing any shape '''
     def calculate_area(self):
-        '''Inputs values and returns the area of the shape'''
+        ''' Inputs values and returns the area of the shape '''
         self.get_values()
         return self.area_formula()
 
     @abstractmethod
     def get_values(self):
-        '''Method to input values'''
+        ''' Method to input values '''
         pass
 
     @abstractmethod
     def area_formula(self) -> float:
-        '''Method to calculate area from values in the class'''
+        ''' Method to calculate area from values in the class '''
         pass
 
 
@@ -34,8 +34,8 @@ class CircleShape(AbstractShape):
         self.radius = float(input("Введите радиус круга: "))
     
     def area_formula(self):
-        square = math.pi * (self.radius ** 2)
-        return round(square, 2)
+        area = math.pi * (self.radius ** 2)
+        return round(area, 2)
     
 
 class RectangleShape(AbstractShape):
@@ -47,9 +47,10 @@ class RectangleShape(AbstractShape):
         return self.width * self.height
 
 
-def determine_shape(shape_name: str) -> Union[AbstractShape, None]:
+def determine_shape(shape_name: str) -> Optional[AbstractShape]:
     '''
     Returns a shape object by its type name
+
     :param shape_name: name of the shape ("square", "circle", "rectangle")
     :returns: shape object or None if shape is not found
     '''
@@ -65,26 +66,27 @@ def determine_shape(shape_name: str) -> Union[AbstractShape, None]:
         return None
 
 
-shapes_count = int(input("Введите количество фигур, площадь которых вы хотите рассчитать: "))
+if __name__ == "__main__":
+    shapes_count = int(input("Введите количество фигур, площадь которых вы хотите рассчитать: "))
 
-total_square = 0
-successful_count = 0
+    total_area = 0
+    successful_count = 0
 
-for i in range(shapes_count):
-    print()
+    for i in range(shapes_count):
+        print()
 
-    shape_name = input("Введите тип фигуры: ")
-    shape = determine_shape(shape_name)
+        shape_name = input("Введите тип фигуры: ")
+        shape = determine_shape(shape_name)
 
-    if shape == None:
-        continue
+        if shape == None:
+            continue
 
-    square = shape.calculate_area()
-    print(f"Площадь фигуры равна {square}")
+        area = shape.calculate_area()
+        print(f"Площадь фигуры равна {area}")
 
-    total_square += square
-    successful_count += 1
+        total_area += area
+        successful_count += 1
 
-print("________________________________________________________________")
-print(f"Общая площадь: {total_square}")
-print(f"Было посчитано {successful_count} площадей фигур")
+    print("________________________________________________________________")
+    print(f"Общая площадь: {total_area}")
+    print(f"Было посчитано {successful_count} площадей фигур")
