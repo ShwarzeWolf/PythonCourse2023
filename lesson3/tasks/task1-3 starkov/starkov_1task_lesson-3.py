@@ -1,5 +1,7 @@
+from math import pi
+
+
 shape_type = input("Enter the shape type: ")
-pi = 3.14
 if shape_type == "square":
     square_side = int(input("Enter the side of the square: "))
     print(square_side ** 2)

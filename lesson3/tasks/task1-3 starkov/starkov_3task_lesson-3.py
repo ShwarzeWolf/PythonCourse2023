@@ -1,10 +1,12 @@
+from math import pi
+
+
 number = int(input("Enter number of shapes: "))
 n = 0
 sum_of_areas = 0
 for i in range(number):
     shape_type = input("Enter the shape type: ")
     shape_type = shape_type.lower()
-    pi = 3.14
     if shape_type == "square":
         square_side = int(input("Enter the side of the square: "))
         n += 1
