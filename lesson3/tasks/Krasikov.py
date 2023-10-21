@@ -4,15 +4,15 @@ to_count = int(input("Введите количество фигур: "))
 for i in range(to_count):
     shape = input("Введите тип фигуры: ").lower()
     if shape == "square":
-        result = int(input("Введите сторону квадрата: "))**2
+        result = int(input("Введите сторону квадрата: ")) ** 2
         print(result)
         total_square += result
     elif shape == "circle":
-        result = (int(input("Введите радиус круга: "))**2)*3.14
+        result = (int(input("Введите радиус круга: ")) ** 2) * 3.14
         print(result)
         total_square += result
     elif shape == "rectangle":
-        result = int(input("Введите первую сторону прямоугольника: "))*int(input("Введите вторую сторону прямоугольника: "))
+        result = int(input("Введите первую сторону прямоугольника: ")) * int(input("Введите вторую сторону прямоугольника: "))
         print(result)
         total_square += result
     else:
@@ -23,7 +23,7 @@ print(f'Фигур посчитано: {to_count}, суммарная площа
 # Задание 4
 a = input().lower()
 for index in range(len(a) // 2):
-    if a[index] != a[-index-1]:
+    if a[index] != a[- index - 1]:
         print("Не палиндром")
         break
 else:
