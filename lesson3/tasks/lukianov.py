@@ -19,7 +19,7 @@ if task == '1':
             c += 1
         elif figure == 'circle':
             r = float(input('Enter radius: '))
-            s = 2 * math.pi * r
+            s = math.pi * r ** 2
             c += 1
         elif figure == 'rectangle':
             a = float(input('Enter length: '))
@@ -34,12 +34,10 @@ if task == '1':
     print(f'Sum of squares: {s_sum}')
 
 elif task == '2':
-    word = input('Enter word: ')
-    w1 = word.lower()
-    w2 = word.lower()[::-1]
+    word = input('Enter word: ').lower()
 
-    for i in range(len(w1) // 2):
-        if w1[i] != w2[i]:
+    for i in range(len(word) // 2):
+        if word[i] != word[- 1 - i]:
             print('NO')
             break
     else:
