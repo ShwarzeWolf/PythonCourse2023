@@ -24,6 +24,11 @@ def get_next_state(board):
             live_neighbors = 0
             for x in [-1, 0, 1]:
                 for y in [-1, 0, 1]:
+                    """
+                    Этот фрагмент кода проверяет выполнение условий с помощью continue. 
+                    Если x равно 0, а y равно 0, текущая итерация цикла будет пропущена. 
+                    Если i + x меньше 0, больше или равно n, или если j + y меньше 0, больше или равно m, он также пропустит текущую итерацию цикла.
+                    """
                     if x == 0 and y == 0:
                         continue
                     if i + x < 0 or i + x >= n or j + y < 0 or j + y >= m:
@@ -56,4 +61,4 @@ def play_game(n, m):
         board = get_next_state(board)
         time.sleep(1)
 
-play_game(20, 20)
+play_game(5, 5)
