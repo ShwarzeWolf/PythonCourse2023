@@ -1,6 +1,6 @@
-dict={}
-dict["Moskow"]="77"
-dict["Tallin"]="66"
-dict["Minsk"]="55"
-for k, v in dict.items():
-    print(k,v)
+cities = {}
+cities["Moskow"] = "77"
+cities["Tallin"] = "66"
+cities["Minsk"] = "55"
+for k, v in cities.items():
+    print(k, v)

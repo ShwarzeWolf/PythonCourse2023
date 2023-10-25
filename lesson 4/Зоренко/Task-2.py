@@ -1,5 +1,5 @@
-b=list(map(int,input().split()))
-for j in b:
-    if b.count(j)==1:
-        print(j)
+numbers = list(map(int, input().split()))
+for purpose in numbers:
+    if numbers.count(purpose) == 1:
+        print(purpose)
         break
