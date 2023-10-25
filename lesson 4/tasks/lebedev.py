@@ -44,7 +44,7 @@ class Person:
         self.age = age
         (self.first_name, self.second_name, self.last_name) = self.split_full_name()
     
-    def split_full_name(self):
+    def _split_full_name(self):
         name_parts = self.full_name.split()
 
         first_name = name_parts[0] if len(name_parts) > 0 else None
@@ -58,12 +58,12 @@ class Person:
 
 
 def count_indents(_list: list):
-    '''
+    """
     Counts the number of whitespace characters needed to make a list look like table rows
 
     :param _list: a list of strings to count indents
     :returns: lust of numbers of whitespace characters for each column
-    '''
+    """
     longest_word = max(_list, key=len)
     biggest_length = len(longest_word)
 
@@ -89,7 +89,7 @@ indents = count_indents(phones)
 
 iteration = 0
 for phone, person in phone_book.items():
-    print(f"Phone: {phone} {indents[iteration] * ' '} Person: {person.__repr__()}")
+    print(f"Phone: {phone} {indents[iteration] * ' '} Person: {person}")
     iteration += 1
 print()
 
