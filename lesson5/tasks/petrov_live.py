@@ -25,11 +25,10 @@ field = [[0,0,0,0,0,0,0,0,0,],
 
 run = True
 while run:
-    new_field = copy.copy(field)
     fixes = []
     for y in range(len(field)):
         for x in range(len(field[y])):
-            cell = new_field[y][x]
+            cell = field[y][x]
             print(cell, end="")
 
             try:
