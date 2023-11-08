@@ -71,14 +71,3 @@ class Field:
         for row in self.cells:
             flat_position += row
         return flat_position
-        
-                
-if __name__ == "__main__":
-    field = Field()
-    strategy = initialize_strategy.InitializeRandomStrategy()
-    field.initialize_cells(10, 10, strategy)
-    for i in range(100):
-        field.draw()
-        field.update()
-        print()
-        time.sleep(1)
