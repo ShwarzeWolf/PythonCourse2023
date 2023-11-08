@@ -31,7 +31,35 @@ while run:
             cell = field[y][x]
             print(cell, end="")
 
-            try:
+            
+            if x == len(field[y])-1 and y == len(field)-1:
+                neighbours = [field[y][0],
+                            field[0][0],
+                            field[0][x],
+                            field[0][x-1],
+                            field[y][x-1],
+                            field[y-1][x-1],
+                            field[y-1][x],
+                            field[y-1][0],]
+            elif y == len(field)-1:
+                neighbours = [field[y][x+1],
+                        field[0][x+1],
+                        field[0][x],
+                        field[0][x-1],
+                        field[y][x-1],
+                        field[y-1][x-1],
+                        field[y-1][x],
+                        field[y-1][x+1],]
+            elif x == len(field[y])-1:
+                neighbours = [field[y][0],
+                            field[y+1][0],
+                            field[y+1][x],
+                            field[y+1][x-1],
+                            field[y][x-1],
+                            field[y-1][x-1],
+                            field[y-1][x],
+                            field[y-1][0],]
+            else:
                 neighbours = [field[y][x+1],
                             field[y+1][x+1],
                             field[y+1][x],
@@ -40,34 +68,6 @@ while run:
                             field[y-1][x-1],
                             field[y-1][x],
                             field[y-1][x+1],]
-            except:
-                if x == len(field[y])-1 and y == len(field)-1:
-                    neighbours = [field[y][0],
-                                field[0][0],
-                                field[0][x],
-                                field[0][x-1],
-                                field[y][x-1],
-                                field[y-1][x-1],
-                                field[y-1][x],
-                                field[y-1][0],]
-                elif y == len(field)-1:
-                    neighbours = [field[y][x+1],
-                            field[0][x+1],
-                            field[0][x],
-                            field[0][x-1],
-                            field[y][x-1],
-                            field[y-1][x-1],
-                            field[y-1][x],
-                            field[y-1][x+1],]
-                elif x == len(field[y])-1:
-                    neighbours = [field[y][0],
-                                field[y+1][0],
-                                field[y+1][x],
-                                field[y+1][x-1],
-                                field[y][x-1],
-                                field[y-1][x-1],
-                                field[y-1][x],
-                                field[y-1][0],]
             
             alive_neighbour = 0
             for neighbour in neighbours:
