@@ -3,39 +3,37 @@ from random import randint
 import time
 
 COORD = False  # отображение координат
+PAUSE_TIME_IN_SECONDS = 0.5  # задержка между итерациями в секундах
+HEIGHT = 5  # высота поля
+WIDTH = 5  # ширина поля
 
-pause_time = 1  # задержка в итерациях
-height = 10  # высота поля
-width = 10  # ширина поля
-
-# создание и заполнение поля
-field = [[] for num in range(height)]
-for i in range(len(field)):
-    for x in range(width):
-        field[i].append(randint(0, 1))
+field = [[randint(0, 1) for x in range(WIDTH)] for y in range(HEIGHT)]  # создание и заполнение поля
 
 
 def coord_normalization(cord):
     for dot in range(len(cord)):
         if cord[dot][0] < 0:
-            cord[dot][0] = height - 1
-        if cord[dot][0] > height - 1:
+            cord[dot][0] = HEIGHT - 1
+        if cord[dot][0] > HEIGHT - 1:
             cord[dot][0] = 0
         if cord[dot][1] < 0:
-            cord[dot][1] = width - 1
-        if cord[dot][1] > width - 1:
+            cord[dot][1] = WIDTH - 1
+        if cord[dot][1] > WIDTH - 1:
             cord[dot][1] = 0
     return cord
 
 
 def check_neighbors(field, y_cor, x_cor):
     living_neighbor = 0
-    cord = []
+    cord = []  # список координат соседних точек
+
     for y1 in range(-1, 2):
         for x1 in range(-1, 2):
             cord.append([y_cor + y1, x_cor + x1])
-    cord.remove([y_cor, x_cor])
+    cord.remove([y_cor, x_cor])  # удаление координаты самой точки
+
     cord = coord_normalization(cord)
+
     for item in range(len(cord)):
         if field[cord[item][0]][cord[item][1]] == 1:
             living_neighbor += 1
@@ -44,8 +42,8 @@ def check_neighbors(field, y_cor, x_cor):
 
 def step(field):
     new_field = deepcopy(field)
-    for y_cor in range(height):
-        for x_cor in range(width):
+    for y_cor in range(HEIGHT):
+        for x_cor in range(WIDTH):
             living_neighbor = check_neighbors(field, y_cor, x_cor)
             if field[y_cor][x_cor] == 1 and living_neighbor < 2:
                 new_field[y_cor][x_cor] = 0
@@ -56,21 +54,23 @@ def step(field):
     return new_field
 
 
-old_field = []
+old_field = []  # копия предыдущего состояния поля
+
 while field != old_field:
+
     old_field = deepcopy(field)
+
+    #  вывод поля в консоль
     if COORD:
-        numbs = ''
-        for i in range(width + 1):
-            numbs += f'{i} '
-        print(numbs)
-        for i in range(height):
-            print(f"{i + 1} {str(field[i]).replace(',', '')[1:-1]}")
+        for i in range(WIDTH + 1):
+            print(i, end=' ')
+        for i in range(HEIGHT):
+            print(f"\n{i + 1} {str(field[i]).replace(',', '')[1:-1]}", end='')
     else:
-        for i in range(height):
+        for i in range(HEIGHT):
             print(str(field[i]).replace(',', '')[1:-1])
-    print('')
+    print('\n')
 
     field = step(field)
 
-    time.sleep(pause_time)
+    time.sleep(PAUSE_TIME_IN_SECONDS)  # задержка между итерациями
