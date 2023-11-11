@@ -7,21 +7,19 @@
 import random
 import time
 import copy
-import os
+import os.path
 from tkinter import *
 
-alive = "#"    # Символ для отображения живых клеток
-dead = "_"     # Символ для отображения метрвых клеток
 simulation_speed = 10   # Скорость симуляции
 paused = False
-pause_off = False
 mouse_x = mouse_y = 0
 tk = Tk()
 tk.title("Game of Life")
 tk.resizable(0, 0)
 
 
-# Заданный массив
+# Заданный массив:
+
 # n = 10
 # m = 10
 # board = [[1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -35,12 +33,14 @@ tk.resizable(0, 0)
 #          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 #          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-# Случайное заполнение
+# Случайное заполнение:
+
 # n = int(input("Enter width: "))
 # m = int(input("Enter height: "))
 # board = [[random.randint(0, 1) for _ in range(n)] for _ in range(m)]
 
-# Чтение из файла board.txt
+# Чтение из файла board.txt:
+
 f = open(os.path.abspath("Krasikov/board.txt"), 'r')
 data = f.readlines()
 n = len(data[0])-1
@@ -54,13 +54,9 @@ for i in range(n):
 
 
 def pause(event):
-    global paused, pause_off
+    global paused
     if event.char == "p":
         paused = not paused
-        if paused:
-            pause_off = False
-        else:
-            pause_off = True
 
 
 canvas = Canvas(tk, width=50*n, height=50*m)    # Создание и размещение клеток на холсте
@@ -81,17 +77,15 @@ def mouse_pos(event):   # Функция для получения позици�
     mouse_y = event.y
 
 
-def mouse_click(event):
-    global paused, next_board, prev_board, pause_off
-    if paused and mouse_y < m*50 and mouse_x < n*50 and not pause_off:
+def mouse_click(event):    # Функция для обработки кликов мыши на клетки
+    global paused, next_board, prev_board
+    if paused and mouse_y < m*50 and mouse_x < n*50:
         if board[mouse_x // 50][mouse_y // 50] == 0:
             board[mouse_x // 50][mouse_y // 50] = 1
         else:
             board[mouse_x // 50][mouse_y // 50] = 0
         next_board = copy.deepcopy(board)
         prev_board = copy.deepcopy(board)
-        if pause_off:
-            pause_off = False
 
 
 tk.bind("<Motion>", mouse_pos)
