@@ -1,7 +1,6 @@
 string = input()
-alphabet = 'abcdefghijklmnopqrstuvwxyz абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 for letter in string:
-    if letter.lower() not in alphabet:
+    if not (letter.isalpha() or letter.isspace()):
         string = string.replace(letter, '')
 words_list = string.split()
 for word in words_list:
