@@ -20,18 +20,18 @@ tk.resizable(0, 0)
 
 # Заданный массив:
 
-# n = 10
-# m = 10
-# board = [[1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-#          [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#          [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-#          [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-#          [0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
-#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+n = 11
+m = 11
+board = [[1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+         [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+         [0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 # Случайное заполнение:
 
@@ -41,16 +41,18 @@ tk.resizable(0, 0)
 
 # Чтение из файла board.txt:
 
-f = open(os.path.abspath("Krasikov/board.txt"), 'r')
-data = f.readlines()
-n = len(data[0])-1
-m = len(data)
-board = []
-for i in range(n):
-    line = []
-    for j in range(m):
-        line.append(int(data[i][j]))
-    board.append(line)
+# print(os.path.abspath(""))
+# f = open(os.path.abspath("Krasikov/board.txt"), 'r')
+# data = f.readlines()
+# f.close()
+# n = len(data[0])-1
+# m = len(data)
+# board = []
+# for i in range(n):
+#     line = []
+#     for j in range(m):
+#         line.append(int(data[i][j]))
+#     board.append(line)
 
 
 def pause(event):
@@ -118,11 +120,9 @@ while 1:
 
             if counter == 3 and board[x][y] == 0:
                 next_board[x][y] = 1
-                # print(f"New cell at {x}:{y}")
                 continue
             if (counter < 2 or counter > 3) and board[x][y] == 1:
                 next_board[x][y] = 0
-                # print(f"Cell died at {x}:{y}")
                 continue
     time.sleep(10 / simulation_speed)   # Задержка
     if board == [[0]*n]*m:

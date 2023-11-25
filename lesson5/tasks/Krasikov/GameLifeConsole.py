@@ -13,20 +13,21 @@ alive = "#"    # Символ для отображения живых клет�
 dead = "_"     # Символ для отображения метрвых клеток
 simulation_speed = 10   # Скорость симуляции
 
+
 # Заданный массив:
 
-n = 10
-m = 10
-board = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-         [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+# n = 10
+# m = 10
+# board = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+#          [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 # Случайное заполнение:
 
@@ -36,16 +37,18 @@ board = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
 # Чтение из файла board.txt:
 
-# f = open(os.path.abspath("Krasikov/board.txt"), 'r')
-# data = f.readlines()
-# n = len(data[0])-1
-# m = len(data)
-# board = []
-# for i in range(n):
-#     line = []
-#     for j in range(m):
-#         line.append(int(data[i][j]))
-#     board.append(line)
+print(os.path.abspath("board.txt"))
+f = open(os.path.abspath("board.txt"), 'r')
+data = f.readlines()
+f.close()
+n = len(data[0])-1
+m = len(data)
+board = []
+for i in range(n):
+    line = []
+    for j in range(m):
+        line.append(int(data[i][j]))
+    board.append(line)
 
 
 next_board = copy.deepcopy(board)
@@ -61,8 +64,8 @@ def find_neighbours(_x, _y):    # Функция для подсчета кол�
     return count
 
 
-while 1:
-    print("\n"*5)  # Отрисовка текущего массива в консоль
+def draw_board():  # Отрисовка текущего массива в консоль
+    print("\n" * 5)
     print("  ", end="")
     for i in range(n):
         print(i, end=" ")
@@ -73,17 +76,18 @@ while 1:
             print(alive if board[y_][x_] == 1 else dead, end=" ")
         print()
 
+
+while True:
+    draw_board()
     for x in range(n):  # Изменение next_board по правилам игры, используя find_neighbours() для поиска соседей
         for y in range(m):
             counter = find_neighbours(x, y)
 
             if counter == 3 and board[x][y] == 0:
                 next_board[x][y] = 1
-                # print(f"New cell at {x}:{y}")
                 continue
             if (counter < 2 or counter > 3) and board[x][y] == 1:
                 next_board[x][y] = 0
-                # print(f"Cell died at {x}:{y}")
                 continue
     time.sleep(10 / simulation_speed)   # Задержка
     if prev_board == [[0]*n]*m:
