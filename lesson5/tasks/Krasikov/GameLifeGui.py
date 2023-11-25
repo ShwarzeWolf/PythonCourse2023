@@ -110,7 +110,7 @@ def update_canvas():    # Функция для обновления холст�
     canvas.update()
 
 
-while 1:
+while True:
     update_canvas()
     if paused:
         continue
