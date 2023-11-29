@@ -23,8 +23,8 @@ upper_strings = list(map(lambda x: x.upper(), strings))
 
 
 #Задание 4
-def factorial(a):
-    summ = 1
-    for i in range(1, a + 1):
-        summ *= i
-    return summ
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
