@@ -5,11 +5,11 @@ def log_exec_time(func):
     """ Decorator to log execution time of function. """
     time_format = "%H:%M:%S"
 
-    def wrapper():
+    def wrapper(*args, **kwargs):
         starting_time = time.time()
         print(f" LOG: {func.__name__}() started executing at {time.strftime(time_format)}")
 
-        result = func()
+        result = func(*args, **kwargs)
 
         ending_time = time.time()
         print(f" LOG: {func.__name__}() ended executing at {time.strftime(time_format)}")
