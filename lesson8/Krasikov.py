@@ -1,10 +1,16 @@
-def task1(*args):
-    return sum([i**2 for i in args])
+def task1(*args, **kwargs):
+    return sum([i**2 for i in args]+[i**2 for i in kwargs.values()])
 
 
-def task2(*args):
+def task2(*args, **kwargs):
     res = 0
     for i in args:
+        if type(i) == int:
+            res += i**2
+        else:
+            print("Error")
+            return None
+    for i in kwargs.values():
         if type(i) == int:
             res += i**2
         else:
