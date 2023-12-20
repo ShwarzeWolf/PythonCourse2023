@@ -1,4 +1,5 @@
-В рамках сегодняшнего задания вам предлагается выполнить задания из файла в среде google collaboratory 
-https://colab.research.google.com/drive/1lGzrSAzA7IGmbMYSXO2IkAK4ULgISvzD?usp=sharing
+def some_func(a, b, *args, **kwargs):
+   print(args)
+   print(kwargs)
 
-Также выполните тест: https://airtable.com/appP9DyHXriAx6KTA/shrTCpoTwCleZF9BU
+some_func(1, 2, 3, 4, f=6)
