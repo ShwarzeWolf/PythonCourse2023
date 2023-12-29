@@ -66,7 +66,7 @@ class PhoneBook:
                 unique_phones[contact.phone] = contact
         self.contacts = list(unique_phones.values())
 
-# Доп. задания (now task 4)
+# Доп. задания (now task 5)
 class Point:
     def __init__(self, x, y, z):
         self.x = x
@@ -156,3 +156,22 @@ class Plane:
 
         return angle
 
+    @staticmethod
+    def angle_between_planes(plane1, plane2):
+        n1 = plane1.normal_vector
+        n2 = plane2.normal_vector
+
+        dot_product = (
+            n1.x * n2.x +
+            n1.y * n2.y +
+            n1.z * n2.z
+        )
+
+        len_n1 = sqrt(n1.x**2 + n1.y**2 + n1.z**2)
+        len_n2 = sqrt(n2.x**2 + n2.y**2 + n2.z**2)
+
+        cos_angle = dot_product / (len_n1 * len_n2)
+
+        angle = acos(cos_angle)
+
+        return angle
