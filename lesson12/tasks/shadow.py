@@ -63,3 +63,20 @@ class PhoneBook:
                 unique_phones[contact.phone] = contact
         self.contacts = list(unique_phones.values())
 
+# Доп. задания (now task 1)
+class Point:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+class Line:
+    def __init__(self, point1, point2):
+        self.point1 = point1
+        self.point2 = point2
+
+class Plane:
+    def __init__(self, point, vector):
+        self.point = point
+        self.vector = vector
+
