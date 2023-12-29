@@ -149,3 +149,5 @@ class Plane:
         angle = acos(cos_angle)
 
         return angle
+
+# А ещё всех с наступающим новым годом, счастья, здоровья и успеха!
