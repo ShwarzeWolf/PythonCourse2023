@@ -1,6 +1,6 @@
 # First task
 
-from math import sqrt
+from math import sqrt, pi, acos
 
 
 class PhoneContact:
@@ -66,7 +66,7 @@ class PhoneBook:
                 unique_phones[contact.phone] = contact
         self.contacts = list(unique_phones.values())
 
-# Доп. задания (now task 2) (я изменил цифру, теперь у меня есть прогресс)
+# Доп. задания (now task 3)
 class Point:
     def __init__(self, x, y, z):
         self.x = x
@@ -96,4 +96,36 @@ class Plane:
         den = sqrt(A**2 + B**2 + C**2)
 
         return num / den
+
+    def angle_with_line(self, line):
+        direction_vector = Point(
+            line.point2.x - line.point1.x,
+            line.point2.y - line.point1.y,
+            line.point2.z - line.point1.z
+        )
+
+        normal_vector = self.normal_vector
+
+        dot_product = abs(
+            direction_vector.x * normal_vector.x +
+            direction_vector.y * normal_vector.y +
+            direction_vector.z * normal_vector.z
+        )
+
+        len_direction_vector = sqrt(
+            direction_vector.x**2 +
+            direction_vector.y**2 +
+            direction_vector.z**2
+        )
+        len_normal_vector = sqrt(
+            normal_vector.x**2 +
+            normal_vector.y**2 +
+            normal_vector.z**2
+        )
+
+        cos_angle = dot_product / (len_direction_vector * len_normal_vector)
+
+        angle = pi/2 - acos(cos_angle)
+
+        return angle
 
