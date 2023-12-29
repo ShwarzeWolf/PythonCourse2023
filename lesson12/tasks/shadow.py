@@ -1,5 +1,8 @@
 # First task
 
+from math import sqrt
+
+
 class PhoneContact:
     def __init__(self, name, phone, workplace=None, note=None):
         self.name = name
@@ -63,7 +66,7 @@ class PhoneBook:
                 unique_phones[contact.phone] = contact
         self.contacts = list(unique_phones.values())
 
-# Доп. задания (now task 1)
+# Доп. задания (now task 2) (я изменил цифру, теперь у меня есть прогресс)
 class Point:
     def __init__(self, x, y, z):
         self.x = x
@@ -79,4 +82,18 @@ class Plane:
     def __init__(self, point, vector):
         self.point = point
         self.vector = vector
+    
+    def distance_to_point(self, point):
+        A = self.normal_vector.x
+        B = self.normal_vector.y
+        C = self.normal_vector.z
+        D = self.D
+        x = point.x
+        y = point.y
+        z = point.z
+
+        num = abs(A * x + B * y + C * z + D)
+        den = sqrt(A**2 + B**2 + C**2)
+
+        return num / den
 
