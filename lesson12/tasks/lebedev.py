@@ -8,9 +8,13 @@ class PhoneContact:
     def __repr__(self) -> str:
         name_field = f"name: {self.name}"
         phone_number_field = f"phone_number: {self.phone_number}"
-        job_field = f"job: {self.job}" if self.job else ""
-        description_field = f"description: {self.description}" if self.description else ""
-        return f"PhoneContact({name_field}, {phone_number_field}, {job_field}, {description_field})"
+        job_field = f"job: {self.job}" if self.job else None
+        description_field = f"description: {self.description}" if self.description else None
+
+        fields = [name_field, phone_number_field, job_field, description_field]
+        fields_filtered = filter(lambda field: field is not None, fields)
+
+        return f"PhoneContact({', '.join(fields_filtered)})"
     
     def unite_with_contact(self, other):
         assert isinstance(other, PhoneContact), f"Can't unite PhoneContact with {type(other)}"
@@ -19,13 +23,17 @@ class PhoneContact:
         
         if not self.job and not other.job:
             concatenated_job = None
+        elif self.job and other.job:
+            concatenated_job = self.job + " | " + other.job or ""
         else:
-            concatenated_job = (self.job or "") + " | " + (other.job or "")
+            concatenated_job = self.job or other.job
         
         if not self.description and not other.description:
             concatenated_description = None
+        elif self.description and other.description:
+            concatenated_description = self.description + " | " + other.description or ""
         else:
-            concatenated_description = (self.description or "") + " | " + (other.description or "")
+            concatenated_description = self.description or other.description
             
         self.name += " | " + other.name
         self.job = concatenated_job
@@ -62,12 +70,13 @@ class PhoneBook:
 
 if __name__ == "__main__":
     # Создание нескольких экземпляров класса PhoneContact
-    contact1 = PhoneContact("Иванов", "12345", "Менеджер", "Рабочий телефон")
+    contact1 = PhoneContact("Иванов", "12345", None, "Рабочий телефон")
     contact2 = PhoneContact("Петров", "54321", "Аналитик", "Личный телефон")
     contact3 = PhoneContact("Сидоров", "12345", "Разработчик", "Основной контакт")
+    contact4 = PhoneContact("Орехов", "12345", "Гример", None)
 
     # Создание экземпляра класса PhoneBook с тестовыми контактами
-    phone_book = PhoneBook(contact1, contact2, contact3)
+    phone_book = PhoneBook(contact1, contact2, contact3, contact4)
 
     print(phone_book)
 
