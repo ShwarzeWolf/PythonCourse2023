@@ -14,7 +14,8 @@ class PhoneContact:
     
     def unite_with_contact(self, other):
         assert isinstance(other, PhoneContact), f"Can't unite PhoneContact with {type(other)}"
-        assert self.phone_number == other.phone_number, "To unite PhoneContact instances they should have the same phone number"
+        assert self.phone_number == other.phone_number, \
+            "To unite PhoneContact instances they should have the same phone number"
         
         if not self.job and not other.job:
             concatenated_job = None
@@ -35,8 +36,9 @@ class PhoneBook:
     def __init__(self, *contacts) -> None:
         self.contacts: list[PhoneContact] = list(contacts)
     
-    def __str__(self) -> str:
-        return "\n".join([repr(contact) for contact in self.contacts])
+    def __repr__(self) -> str:
+        contacts_string = "\n".join(["\t" + repr(contact) for contact in self.contacts])
+        return "PhoneBook {\n" + contacts_string + "\n}"
 
     def search_by_name(self, searched_name):
         found = filter(lambda contact: contact.name == searched_name, self.contacts)
@@ -57,18 +59,20 @@ class PhoneBook:
         
         self.contacts = list(contacts_by_phone.values())
 
-# Создание нескольких экземпляров класса PhoneContact
-contact1 = PhoneContact("Иванов", "12345", "Менеджер", "Рабочий телефон")
-contact2 = PhoneContact("Петров", "54321", "Аналитик", "Личный телефон")
-contact3 = PhoneContact("Сидоров", "12345", "Разработчик", "Основной контакт")
 
-# Создание экземпляра класса PhoneBook с тестовыми контактами
-phone_book = PhoneBook(contact1, contact2, contact3)
+if __name__ == "__main__":
+    # Создание нескольких экземпляров класса PhoneContact
+    contact1 = PhoneContact("Иванов", "12345", "Менеджер", "Рабочий телефон")
+    contact2 = PhoneContact("Петров", "54321", "Аналитик", "Личный телефон")
+    contact3 = PhoneContact("Сидоров", "12345", "Разработчик", "Основной контакт")
 
-print(phone_book)
+    # Создание экземпляра класса PhoneBook с тестовыми контактами
+    phone_book = PhoneBook(contact1, contact2, contact3)
 
-phone_book.unite_contacts()
+    print(phone_book)
 
-print()
+    phone_book.unite_contacts()
 
-print(phone_book)
+    print()
+
+    print(phone_book)
