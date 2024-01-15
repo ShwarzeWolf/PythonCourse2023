@@ -24,14 +24,14 @@ class PhoneContact:
         if not self.job and not other.job:
             concatenated_job = None
         elif self.job and other.job:
-            concatenated_job = self.job + " | " + other.job or ""
+            concatenated_job = self.job + " | " + other.job
         else:
             concatenated_job = self.job or other.job
         
         if not self.description and not other.description:
             concatenated_description = None
         elif self.description and other.description:
-            concatenated_description = self.description + " | " + other.description or ""
+            concatenated_description = self.description + " | " + other.description
         else:
             concatenated_description = self.description or other.description
             
