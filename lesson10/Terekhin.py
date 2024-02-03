@@ -3,9 +3,9 @@ import time
 
 def repeat(count=2, pause_time=0.5):
     def func_repeat(func):
-        def repeat_wrapper():
+        def repeat_wrapper(*args, **kwargs):
             for i in range(count):
-                func()
+                func(*args, **kwargs)
                 time.sleep(pause_time)
 
         return repeat_wrapper
@@ -14,8 +14,8 @@ def repeat(count=2, pause_time=0.5):
 
 
 @repeat(4, 1.5)
-def some_func():
-    print('Function executed!')
+def some_func(*args, **kwargs):
+    print(f'Function executed!\nArgs: {args}\nKwargs: {kwargs}')
 
 
-some_func()
+some_func(1, 'something', numder=15)
